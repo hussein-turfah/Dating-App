@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\FunctionsController;
 use App\Models\User;
 
-class AuthenticationController extends Controller
+class LoginController extends Controller
 {
     public function login(Request $request){
 
@@ -15,7 +15,7 @@ class AuthenticationController extends Controller
         $email = $functionsController -> entryValidate($request ->email);
         $password = $functionsController -> entryValidate($request ->password);
         
-        $verified_email = User::where('email', $email)->first();
+        $verified_email = User::where('email', $email);
         $verified_password = User::where('password'.'salt',$password); 
 
         if($verified_email && $verified_password){

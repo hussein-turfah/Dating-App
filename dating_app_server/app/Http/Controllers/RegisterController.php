@@ -34,16 +34,7 @@ class RegisterController extends Controller
         $date = now()->format('d-m-y');
         
 
-        
-        
-        // if ($request->hasFile('image')) {
-        //     $image = $request->file('image');
-        //     $image_name = uniqid();
-        //     $image_path = $image->storeAs('public/images', $image_name . '.jpg');
-        //     $image_encoded = base64_encode(asset($image_path));
-        // }
-
-        $verified_email = User::where('email', $email)->first();
+        $verified_email = User::where('email', $email);
 
         if(!$verified_email){
             
