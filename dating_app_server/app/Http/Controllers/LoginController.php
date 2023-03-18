@@ -10,19 +10,28 @@ class LoginController extends Controller
 {
     public function login(Request $request){
 
-        $functionsController = new FunctionsController();
+        $functions_controller = new FunctionsController();
 
-        $email = $functionsController -> entryValidate($request ->email);
-        $password = $functionsController -> entryValidate($request ->password);
+        $email = $functions_controller -> entryValidate($request ->email);
+        $password = $functions_controller -> entryValidate($request ->password);
         
-        $verified_email = User::where('email', $email);
-        $verified_password = User::where('password'.'salt',$password); 
+        $verified_email = User::where('email', $email)->count();
+        if($verified_email){
 
-        if($verified_email && $verified_password){
-            $id = $verified_email -> pluck('id');
-            return response() -> json([
-                "user_id" => $id
-            ]);
+            $user = User::where('email', $email)->first();
+
+            $salt = $user->salt;
+            $hashed_password = $user->password;
+            $salt_password = $password.$salt;
+            $hashed_salt_password = hash('sha256',$salt_password);
+
+            if($hashed_password == $hashed_salt_password){
+
+                $id = $user->id;
+                return response() -> json([
+                    "user_id" => $id
+                ]);
+            }
         }
     }
 }
