@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 return [
 
@@ -182,6 +183,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        //JWt
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -212,4 +215,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    //JWt
+    'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+    'JWTAuthFactory' => Tymon\JWTAuth\Facades\JWTAuthFactory::class,
 ];

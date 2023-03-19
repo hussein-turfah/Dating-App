@@ -20,10 +20,15 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 Route::post('/register',[RegisterController::class, "register"]);
 Route::post('/login',[LoginController::class, "login"]);
-Route::post('/color',[ColorController::class, "checkColor"]);
-Route::post('/newpassword',[NewPasswordController::class, "newPassword"]);
+  
+Route::group(['middleware' => ['jwt.auth']], function () {
+  Route::post('/color', [ColorController::class, 'checkColor']);
+  Route::post('/newpassword', [NewPasswordController::class, 'newPassword']);
+});
+
+
+  
+
+
