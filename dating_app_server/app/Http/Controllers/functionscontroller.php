@@ -34,5 +34,15 @@ class functionscontroller extends Controller
         }
     }
 
+    public function saveImageOptional(Request $request, $file_name){
+        if ($request->file($file_name)){
+            $image = $request->file($file_name);
+            $image_name = uniqid();
+            $image_path = $image->storeAs('public/images', $image_name .'.jpg');
+            $image_encoded = base64_encode(asset($image_path));
+            return $image_encoded;
+        }
+    }
+
 
 }
