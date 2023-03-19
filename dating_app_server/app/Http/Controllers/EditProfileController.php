@@ -26,10 +26,10 @@ class EditProfileController extends Controller
         return response()->json([
             'success' => true,
             'bio' => $bio,
-            'image1' => $image1,
-            'image2' => $image2,
-            'image3' => $image3,
-            'image4' => $image4,
+            'image1' => base64_decode($image1),
+            'image2' => base64_decode($image2),
+            'image3' => base64_decode($image3),
+            'image4' => base64_decode($image4),
         ]);
 
     }
