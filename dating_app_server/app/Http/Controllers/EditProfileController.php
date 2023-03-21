@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 
 class EditProfileController extends Controller
 {
-    function editProfileGet(){
-        $functions_controller = new functionscontroller();
-        
+    function editProfileGet(){        
         #change the id from front-end to jwt
         #this is just for testing
 

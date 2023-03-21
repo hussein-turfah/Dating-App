@@ -8,6 +8,7 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\EditProfileController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NewPasswordController;
+use App\Http\Controllers\OppositeGenderController;
 use App\Http\Controllers\RegisterController;
 
 /*
@@ -23,13 +24,14 @@ use App\Http\Controllers\RegisterController;
 
 Route::post('/register',[RegisterController::class, "register"]);
 Route::post('/login',[LoginController::class, "login"]);
+Route::post('/color', [ColorController::class, 'checkColor']);
   
 // Route::group(['middleware' => ['jwt.auth']], function () {
-  Route::post('/color', [ColorController::class, 'checkColor']);
   Route::post('/newpassword', [NewPasswordController::class, 'newPassword']);
   Route::post('/editprofileget',[EditProfileController::class,'editProfileGet']);
   Route::post('/editprofilepost',[EditProfileController::class,'editProfilePost']);
-  
+  Route::post('/gender',[OppositeGenderController::class,'getOppositeGender']);
+
 // });
 
 
